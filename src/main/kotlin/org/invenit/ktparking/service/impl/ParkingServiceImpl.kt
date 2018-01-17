@@ -19,4 +19,8 @@ class ParkingServiceImpl(
     override fun getAll(): List<Parking> {
         return parkingRepository.findAll()
     }
+
+    override fun save(parking: Parking): Parking {
+        return parkingRepository.save(parking)
+    }
 }

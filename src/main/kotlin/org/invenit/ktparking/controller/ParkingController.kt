@@ -3,6 +3,8 @@ package org.invenit.ktparking.controller
 import org.invenit.ktparking.model.Parking
 import org.invenit.ktparking.service.ParkingService
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 /**
@@ -17,6 +19,14 @@ class ParkingController (
     @GetMapping
     fun getAll(): List<Parking> {
         return parkingService.getAll()
+    }
+
+    @PostMapping
+    fun create(@RequestBody parking: Parking): Parking {
+        if (parking.id != 0L) {
+            throw IllegalArgumentException("ID must be set to 0")
+        }
+        return parkingService.save(parking)
     }
 
 }
