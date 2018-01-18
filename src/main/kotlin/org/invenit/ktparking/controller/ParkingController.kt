@@ -1,5 +1,7 @@
 package org.invenit.ktparking.controller
 
+import org.invenit.ktparking.dto.converter.ParkingDtoConverter
+import org.invenit.ktparking.dto.model.ParkingDto
 import org.invenit.ktparking.model.Parking
 import org.invenit.ktparking.service.ParkingService
 import org.springframework.web.bind.annotation.GetMapping
@@ -13,7 +15,8 @@ import org.springframework.web.bind.annotation.RestController
  */
 @RestController(API_V1_PATH + "/parking")
 class ParkingController (
-        val parkingService: ParkingService
+        val parkingService: ParkingService,
+        val parkingDtoConverter: ParkingDtoConverter
 ) {
 
     @GetMapping
@@ -22,11 +25,10 @@ class ParkingController (
     }
 
     @PostMapping
-    fun create(@RequestBody parking: Parking): Parking {
-        if (parking.id != 0L) {
-            throw IllegalArgumentException("ID must be set to 0")
-        }
-        return parkingService.save(parking)
+    fun create(@RequestBody parking: ParkingDto): ParkingDto {
+        val entity = parkingDtoConverter.convertTo(parking)
+        val result = parkingService.save(entity)
+        return parkingDtoConverter.convertFrom(result)
     }
 
 }
