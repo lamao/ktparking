@@ -49,6 +49,7 @@ dependencies {
     compile "org.mapstruct:mapstruct-jdk8:$mapStructVersion"
 
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
+    testCompile "com.nhaarman:mockito-kotlin:1.5.0"
 
     kapt "org.mapstruct:mapstruct-processor:$mapStructVersion"
 

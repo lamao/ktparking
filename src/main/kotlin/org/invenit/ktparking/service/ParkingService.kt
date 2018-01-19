@@ -7,6 +7,8 @@ import org.invenit.ktparking.model.Parking
  * Creation date 17.01.2018
  */
 interface ParkingService {
-    fun save(parking: Parking): Parking
     fun getAll(): List<Parking>
+    fun create(parking: Parking): Parking
+    fun update(id: Long, entity: Parking) : Parking
+    fun delete(id: Long)
 }

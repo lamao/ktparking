@@ -1,5 +1,6 @@
-package org.invenit.ktparking.controller
+package org.invenit.ktparking.controller.parking
 
+import org.invenit.ktparking.controller.ParkingController
 import org.junit.Assert.assertNotNull
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -13,7 +14,7 @@ import org.springframework.test.context.junit4.SpringRunner
  */
 @RunWith(SpringRunner::class)
 @SpringBootTest
-class ParkingControllerTest {
+class ParkingControllerTestGetAll {
     @Autowired
     lateinit var parkingController: ParkingController
 
