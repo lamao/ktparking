@@ -67,6 +67,6 @@ springBoot {
 jacocoTestReport {
     reports {
         xml.enabled = true // coveralls plugin depends on xml format report
-        html.enabled = false
+        html.enabled = true
     }
 }
