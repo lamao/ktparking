@@ -64,9 +64,15 @@ dependencies {
 springBoot {
     mainClass = 'org.invenit.ktparking.MainKt'
 }
+
 jacocoTestReport {
     reports {
         xml.enabled = true // coveralls plugin depends on xml format report
         html.enabled = true
     }
+}
+
+// https://github.com/kt3k/coveralls-gradle-plugin/issues/77
+coveralls {
+    project.extensions.coveralls.sourceDirs += project.sourceSets.main.kotlin.srcDirs
 }
