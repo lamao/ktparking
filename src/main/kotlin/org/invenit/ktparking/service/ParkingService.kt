@@ -11,4 +11,5 @@ interface ParkingService {
     fun create(parking: Parking): Parking
     fun update(id: Long, entity: Parking) : Parking
     fun delete(id: Long)
+    fun configure(parking: Parking): Parking
 }

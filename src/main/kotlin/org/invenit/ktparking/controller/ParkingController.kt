@@ -29,16 +29,24 @@ class ParkingController(
         return parkingDtoConverter.convertFrom(result)
     }
 
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     fun update(@PathVariable id: Long, @RequestBody parking: ParkingDto): ParkingDto {
         val entity = parkingDtoConverter.convertTo(parking)
         val result = parkingService.update(id, entity)
         return parkingDtoConverter.convertFrom(result)
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     fun delete(@PathVariable id: Long) {
         parkingService.delete(id)
     }
+
+    @PostMapping("/configure")
+    fun configure(@RequestBody parking: ParkingDto): ParkingDto {
+        val entity = parkingDtoConverter.convertTo(parking)
+        val result = parkingService.configure(entity)
+        return parkingDtoConverter.convertFrom(result)
+    }
+
 
 }

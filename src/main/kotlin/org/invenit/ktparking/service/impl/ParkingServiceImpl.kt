@@ -38,4 +38,9 @@ class ParkingServiceImpl(
     override fun delete(id: Long) {
         parkingRepository.delete(id)
     }
+
+    // TODO: Implement
+    override fun configure(parking: Parking): Parking {
+        return parkingRepository.save(parking)
+    }
 }
