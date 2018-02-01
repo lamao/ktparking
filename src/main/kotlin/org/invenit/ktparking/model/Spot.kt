@@ -1,8 +1,6 @@
 package org.invenit.ktparking.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Created by vyacheslav.mischeryakov
@@ -15,7 +13,16 @@ data class Spot(
 
         @Id
         @GeneratedValue
-        var id: Int = 0
+        var id: Int = 0,
+
+        @ManyToOne
+        @JoinColumn
+        var parking: Parking? = null
 ) {
-    constructor(): this(0.0)
+    constructor() : this(0.0)
+
+    override fun toString(): String  {
+        return "(id=$id, price=$price, description=$description, parking.id=${parking?.id}"
+    }
+
 }

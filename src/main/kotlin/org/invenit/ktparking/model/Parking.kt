@@ -1,8 +1,6 @@
 package org.invenit.ktparking.model
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
+import javax.persistence.*
 
 /**
  * Created by vyacheslav.mischeryakov
@@ -14,7 +12,10 @@ data class Parking (
 
         @Id
         @GeneratedValue
-        var id: Long = 0
+        var id: Long = 0,
+
+        @OneToMany(mappedBy = "parking", cascade = arrayOf(CascadeType.ALL), orphanRemoval = true)
+        var spots: MutableList<Spot> = ArrayList()
 ) {
     constructor(): this("")
 }

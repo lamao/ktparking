@@ -2,6 +2,7 @@ package org.invenit.ktparking.service.parking
 
 import com.nhaarman.mockito_kotlin.whenever
 import org.invenit.ktparking.model.Parking
+import org.invenit.ktparking.model.Spot
 import org.invenit.ktparking.repository.ParkingRepository
 import org.invenit.ktparking.service.ParkingService
 import org.invenit.ktparking.service.impl.ParkingServiceImpl
@@ -37,6 +38,10 @@ class ConfigureParkingTest {
         val parking = Parking()
         parking.name = "name"
 
+        parking.spots.add(Spot(1.0))
+        parking.spots.add(Spot(1.0))
+        parking.spots.add(Spot(2.0, "roof"))
+
         whenever(parkingRepository.save(parking)).thenReturn(Parking("name", 1))
 
         val result = parkingService.configure(parking)
@@ -45,6 +50,5 @@ class ConfigureParkingTest {
         verify(parkingRepository, only()).save(Matchers.any(Parking::class.java))
         assertEquals(1, result.id)
         assertEquals("name", result.name)
-
     }
 }

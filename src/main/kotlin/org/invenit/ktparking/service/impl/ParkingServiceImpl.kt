@@ -41,6 +41,9 @@ class ParkingServiceImpl(
 
     // TODO: Implement
     override fun configure(parking: Parking): Parking {
+        parking.spots.forEach {
+            it.parking = parking
+        }
         return parkingRepository.save(parking)
     }
 }
